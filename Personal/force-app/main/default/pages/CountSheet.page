@@ -1,0 +1,19 @@
+<apex:page showheader="false" sidebar="false" standardcontroller="Merchandise__c" recordsetVar="products" >
+
+  <!-- Begin Default Content REMOVE THIS -->
+  <h1>Inventory Count Sheet</h1>
+  <apex:form >
+  <apex:DataTable value="{!products}" var="pitem">
+      <apex:column headerValue="Product" width="200">
+          <apex:outputText value="{!pitem.name}"></apex:outputText>
+      </apex:column>
+      <apex:column headerValue="Inventory" width="200">
+          <apex:outputField value="{!pitem.Total_Inventory__c}">
+              <apex:inlineEditSupport event="ondblclick" showOnEdit="update"/>
+          </apex:outputField>
+      </apex:column>
+  </apex:DataTable>
+  <apex:commandButton action="{!quicksave}" value="Update Counts"/>
+  </apex:form>
+  
+</apex:page>

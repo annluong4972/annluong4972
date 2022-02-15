@@ -1,0 +1,10 @@
+<apex:page showHeader="true">
+    <div>
+       {!$User.FirstName} <br/>
+       {!$User.LastName} <br/>
+       {!$User.Email}<br/>  
+       {!$User.Phone}<br/>
+       {!$User.Title}<br/>   
+   </div>
+
+</apex:page>

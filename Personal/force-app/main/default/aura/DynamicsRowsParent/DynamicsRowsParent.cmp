@@ -1,0 +1,74 @@
+<aura:component controller="dynamicRowsController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    
+    <aura:attribute name="records" type="Object[]"/>
+    <aura:attribute name="rows" type="Integer"/>
+    <aura:attribute name="visible" type="Boolean" default="false"/>
+    
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doinit}"/>
+    
+    <lightning:card title="Add/Delete Rows Dynamically">
+        <aura:set attribute="actions">
+            <a onclick="{!c.add}">
+                <lightning:icon iconName="utility:add" alternativeText="add"/>
+            </a>
+        </aura:set>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <lightning:layout>
+                        <lightning:layoutItem  flexibility="auto, no-grow">
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Sno">S.No</div>
+                            </th>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="4" >
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Opportunity Name">Name</div>
+                            </th>
+                        </lightning:layoutItem> 
+                        <lightning:layoutItem size="4" >
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Opportunity Name">Industry</div>
+                            </th>
+                        </lightning:layoutItem> 
+                        <lightning:layoutItem size="4" >
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Opportunity Name">Action</div>
+                            </th>
+                        </lightning:layoutItem> 
+                    </lightning:layout>
+                </tr>
+            </thead>
+        </table>
+        
+        <aura:iteration items="{!v.records}" var="rec" indexVar="index">
+            
+            <lightning:layout>
+                <lightning:layoutItem  padding="around-small" flexibility="auto, no-grow">
+                    <div class="slds-text-heading_small slds-text-align_center">{!index + 1}.</div>
+                </lightning:layoutItem>
+                <c:DynamicsRows record="{!rec}"/>
+                <lightning:layoutItem size="4" padding="around-small">
+                    <a name="{!index}" onclick="{!c.remove}">
+                        <lightning:icon iconName="utility:delete" alternativeText="delete"/>
+                    </a>
+                </lightning:layoutItem>
+            </lightning:layout>
+        </aura:iteration>
+       
+        <div class="slds-grid slds-grid_reverse">
+            <div class="slds-col slds-size_4-of-12 ">
+                <aura:if isTrue="{!v.visible}">
+                    <div class="slds-p-top_small">
+                        Saved {!v.rows} records...
+                    </div>
+                </aura:if>
+            </div>
+            <div class="slds-col slds-size_2-of-12">
+             <lightning:button label="Save" onclick="{!c.save}" variant="brand"/>
+            </div>
+        </div>
+        
+    </lightning:card>
+</aura:component>

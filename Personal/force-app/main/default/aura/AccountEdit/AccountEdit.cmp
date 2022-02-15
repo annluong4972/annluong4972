@@ -1,0 +1,24 @@
+<aura:component >
+    
+    <aura:attribute name="disabled" type="Boolean" default="false" />
+    <aura:attribute name="recordId" type="String"  />
+    <lightning:overlayLibrary aura:id="popuplib"/>
+    
+    <lightning:recordEditForm onsubmit="{!c.handleSubmit}"
+                              onsuccess="{!c.handleSuccessMessage}"
+                              recordId="{!v.recordId}"
+                              objectApiName="Account" aura:id="editForm">
+        <!-- the messages component is for error messages -->
+        <lightning:messages />
+        
+        <lightning:inputField fieldName="Name" />
+        <lightning:inputField fieldName="Type" />
+        <lightning:inputField fieldName="Rating" />
+        <lightning:inputField fieldName="Phone" />
+        <lightning:inputField fieldName="Industry" />
+        <div class="slds-m-top_medium">
+            <lightning:button disabled="{!v.disabled}" variant="brand" type="submit" name="save" label="Save" />
+        </div>
+    </lightning:recordEditForm>
+    
+</aura:component>

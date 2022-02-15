@@ -1,0 +1,47 @@
+<apex:page showHeader="false" sidebar="false" standardController="Opportunity">
+    <style>
+        html, body, p { 
+            font-family: "ProximaNovaSoft-Regular", Calibri, 
+            "Gill Sans", "Gill Sans MT", Candara, Segoe, 
+            "Segoe UI", Arial, sans-serif; 
+            font-size: 110%;
+        }
+        input { font-size: 95%; }
+    </style>
+
+    <script src='/canvas/sdk/js/publisher.js'></script>
+
+    <apex:remoteObjects >
+        <apex:remoteObjectModel name="Opportunity" fields="Id,Name,StageName"/>
+    </apex:remoteObjects>
+    <div id="divMsg">
+        Opportunity Stage Tips go here...
+    </div>
+
+    <script>
+        var stage = "{!Opportunity.StageName}";
+        var tip = "";
+        //Prospecting, Needs Analysis, Proposal/Price Quote and Negotiation/Review
+        switch (stage)
+        {
+            case "Prospecting":
+                tip = "Prospecting tips go here...";
+                break;
+            case "Needs Analysis":
+                tip = "Needs Analysis tips go here...";
+                break;
+            case "Proposal/Price Quote"s
+                tip = "Proposal/Price Quote tips go here...";
+                break;
+            case "Negotiation/Review"
+                tip = "Negotiation/Review tips go here...";
+                break;
+            default:
+                tip = "Unknown Stage...";
+        }       
+        
+        var Msg = document.getElementById("divMsg");
+        Msg.html = tip; 
+        Msg.text = "Testing 123...";     
+    </script>
+</apex:page>

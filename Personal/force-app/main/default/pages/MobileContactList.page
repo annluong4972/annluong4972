@@ -1,0 +1,40 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false" standardController="Contact" recordSetVar="contacts" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0">
+
+  <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+      <head>
+      <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <title>SLDS LatestAccounts Visualforce Page in Salesforce Mobile</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+      <!-- Import the Design System style sheet -->
+      <apex:slds />
+    </head>     
+    <body>
+
+      <!-- REQUIRED SLDS WRAPPER -->
+      <div class="slds-scope">
+
+         <!-- PRIMARY CONTENT WRAPPER -->
+         <div class="myapp">
+       		<apex:repeat value="{!contacts}" var="c">
+            	<dl class="slds-list_horizontal slds-wrap">
+					<dt class="slds-item_label slds-text-color_weak slds-truncate" title="CNameLabel">Contact Name</dt>
+					<dd class="slds-item_detail slds-truncate" title="CName">{!c.Name}</dd>
+					<dt class="slds-item_label slds-text-color_weak slds-truncate" title="PhoneLabel">Phone:</dt>
+					<dd class="slds-item_detail slds-truncate" title="Phone">{!c.Phone}</dd>
+             	</dl>
+           	</apex:repeat>
+
+                
+         </div>
+         <!-- / PRIMARY CONTENT WRAPPER -->
+
+      </div>
+      <!-- / REQUIRED SLDS WRAPPER -->
+
+      <!-- JAVASCRIPT -->
+      <!-- / JAVASCRIPT -->
+    </body>
+  </html>
+</apex:page>

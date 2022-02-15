@@ -1,0 +1,49 @@
+<aura:component controller="DataTableMassUpdateClass"  implements="flexipage:availableForAllPageTypes,force:appHostable,flexipage:availableForRecordHome,force:hasRecordId,force:hasSObjectName">
+    
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="errors" type="Object" default="[]"/>
+    <aura:attribute name="draftValues" type="Object" default="[]"/>
+    <aura:attribute name="newRec" type="boolean" default="false" />     
+	<aura:attribute name="isOpen" type="boolean" default="true" />    
+   	<aura:attribute name="url" type="String"/>
+   	<aura:attribute name="value" type="String" default=""/>
+    
+    <!-- Specify the pageReference type. Only object is supported. -->
+    <aura:attribute name="pageReference" type="Object"/>
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+    
+    <!-- Implement the navigation service. -->
+    <lightning:navigation aura:id="navService"/>
+
+    <!-- pageReferenceUtil component -->
+    <lightning:pageReferenceUtils aura:id="pageRefUtils"/>
+
+  		<lightning:card title="Account Mass Update" iconName="custom:custom46">
+        	<div class="slds-m-top_medium slds-m-bottom_x-large" style="margin-left:50px">
+            	<!-- Button group: simple buttons -->
+           		<lightning:buttonGroup>
+                		<lightning:button label="New" onclick="{!c.handleClick}" />
+                		<lightning:button label="Mass Update" />
+                		<lightning:button label="Submit for Payment" />
+            		</lightning:buttonGroup>
+        	</div>
+        	<a href="{!v.url}" target="_blank">New Account (Aura Link)</a> <br/>
+
+        	<!-- the container element determine the height of the datatable -->
+       		<div style="height: 600px">
+            <lightning:datatable aura:id="dtTable"
+                                 columns="{! v.columns }"
+                                 data="{! v.data }"
+                                 keyField="Id"
+                                 errors="{! v.errors }"
+                                 draftValues="{! v.draftValues }"
+                                 onsave="{! c.handleSaveEdition }"
+                                 />
+        </div>
+
+    </lightning:card>  
+    
+</aura:component>

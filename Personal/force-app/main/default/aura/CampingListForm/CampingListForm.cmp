@@ -1,0 +1,47 @@
+<aura:component implements="flexipage:availableForRecordHome">
+    <aura:attribute name="newItem" type="Camping_Item__c"
+         default="{ 'sobjectType': 'Camping_Item__c',
+                        'Name': '',
+                        'Packed__c': false,
+                        'Price__c': 0.00,
+                        'Quantity__c': 0.00 }"/>
+
+    <!--  PAGE HEADER -->     
+    <c:campingHeader></c:campingHeader>
+    <!-- / PAGE HEADER -->  
+    <!-- CREATE CAMPING LIST ITEM -->
+    <div aria-labelledby="newCampingItemform">
+         <!-- BOXED AREA -->
+        <fieldset class="slds-box slds-theme--default slds-container--small">
+
+        <!-- CREATE NEW CAMPING LIST ITEM FORM -->
+        <form class="slds-form--stacked">          
+            <lightning:input aura:id="campingitemform" label="Item Name"
+                             name="campingitemname"
+                             value="{!v.newItem.Name}"
+                             required="true"/> 
+            <lightning:input type="number" aura:id="campingitemform" label="Price"
+                             name="campingitemamount"
+                             min="0.0"
+                             formatter="currency"
+                             step="0.00"
+                             value="{!v.newItem.Price__c}" />
+            <lightning:input aura:id="campingitemform" label="Quantity"
+                             name="campingitemquanity"
+                             value="{!v.newItem.Quantity__c}"
+                             min="1"
+                             type="number"
+                             step="1"
+                             messageWhenRangeUnderflow="Enter a quantity that's at least 1."/>
+           <lightning:input type="checkbox" aura:id="campingitemform" label="Packed?"  
+                             name="campingitempacked"
+                             checked="{!v.newItem.Packed__c}"/>
+            <lightning:button label="Create Item" 
+                              class="slds-m-top--medium"
+                              variant="brand"
+                              onclick="{!c.clickCreateItem}"/>
+        </form>
+        <!-- / CREATE NEW CAMPING ITEM FORM -->
+        </fieldset>
+    </div>    	
+</aura:component>

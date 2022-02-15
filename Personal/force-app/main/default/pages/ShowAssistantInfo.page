@@ -1,0 +1,19 @@
+<apex:page showHeader="false" standardController="Contact">
+    <script src='/canvas/sdk/js/publisher.js'></script>
+    <apex:remoteObjects >
+        <apex:remoteObjectModel name="Contact" fields="Id,AssistantName,AssistantPhone"/>
+    </apex:remoteObjects>
+    <div>
+        Assistant Name:  <input id="AsstName" type="text"></input><br/>
+        Assistant Phone:  <a id="AsstPhone" href="tel:888-555-1212">888-555-1212</a>
+    </div>
+
+    <script>
+        var opportunityId = "{!Contact.Id}";
+        var asstName = document.getElementById("AsstName");
+        var asstPhone = document.getElementById("AsstPhone");
+        asstName.value = "{!Contact.AssistantName}";
+        asstPhone.href = "tel:" + "{!Contact.AssistantPhone}";
+        asstPhone.text = "{!Contact.AssistantPhone}";
+    </script>
+</apex:page>

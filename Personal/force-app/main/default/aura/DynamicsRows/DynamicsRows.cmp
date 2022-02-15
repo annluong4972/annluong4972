@@ -1,0 +1,16 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    
+    <aura:attribute name="record" type="Object" default="{
+                                                         'sobjectType' : 'Account',
+                                                         'Name' : '',
+                                                         'Industry' : '' }"/>
+    
+
+        <lightning:layoutItem size="4" padding="around-small">
+            <lightning:input label="name" value="{!v.record.Name}" variant="label-hidden"/>
+        </lightning:layoutItem>
+        <lightning:layoutItem size="4" padding="around-small">
+            <lightning:input label="Industry" value="{!v.record.Industry}" variant="label-hidden"/>
+        </lightning:layoutItem>
+    
+</aura:component>

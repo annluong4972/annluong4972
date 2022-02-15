@@ -1,0 +1,16 @@
+<apex:page standardController="Account">
+  <apex:tabPanel selectedTab="detailTab" switchType="client">
+      <apex:tab name="detailTab" label="Account Details">
+          <apex:detail relatedList="false" title="Account Details"  inlineEdit="true"/>
+      </apex:tab>
+      <apex:tab name="contactTab" label="Contacts">
+          <apex:relatedList list="contacts" subject="{!account}"/>
+      </apex:tab>
+       <apex:tab name="oppTab" label="Opportunities">
+          <apex:relatedList list="opportunities" subject="{!account}"/>
+      </apex:tab>   
+      <apex:tab name="openactTab" label="Open Activities">
+          <apex:relatedList list="openactivities" subject="{!account}"/>
+      </apex:tab>    
+  </apex:tabPanel>
+</apex:page>

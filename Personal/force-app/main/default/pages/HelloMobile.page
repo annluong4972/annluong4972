@@ -1,0 +1,5 @@
+<apex:page title="Hello Mobile" sidebar="false" showHeader="false">
+    <h1>
+        Hello mobile world
+    </h1>
+</apex:page>
